@@ -210,7 +210,7 @@ ax[2].set_title('cv.add')
 # Do not use this, due to inefficiencies.
 # Instead, use OpenCV filters or Cython.
 
-# In[ ]:
+# In[32]:
 
 
 import cv2 as cv
@@ -241,7 +241,7 @@ ax[1].set_title('image_brighten')
 get_ipython().run_line_magic('load_ext', 'Cython')
 
 
-# In[ ]:
+# In[36]:
 
 
 get_ipython().run_cell_magic('cython', '', '# https://nyu-cds.github.io/python-cython/03-numpy/\nimport numpy as np\ncimport numpy as np\ndef image_brighten_cy(np.ndarray image, int shift):\n    cdef int h = image.shape[0]\n    cdef int w = image.shape[1] \n    cdef np.ndarray result = np.zeros([h,w], dtype=image.dtype)\n    cdef bint no_overflow\n    cdef int i, j\n    for i in range(0,h):\n        for j in range(0,w):\n            no_overflow = True if image[i,j] + shift < 255 else False\n            result[i,j] = min(image[i,j] + shift, 255) if no_overflow else 255       \n\n    return result')
@@ -270,13 +270,13 @@ get_ipython().run_line_magic('timeit', 'ret,thresh1 = cv.threshold(img,127,255,c
 
 # # Zeroing-Out the Green and Blue Planes
 
-# In[ ]:
+# In[34]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 import cv2 as cv
-img = cv.imread('../images/tom.jpg', cv.IMREAD_COLOR)
+img = cv.imread('./images/tom.jpg', cv.IMREAD_COLOR)
 if img is None:
     print('Image could not be read.')
     assert False
@@ -295,5 +295,5 @@ plt.show()
 # In[ ]:
 
 
-import numpy as np
+
 
