@@ -1,0 +1,17 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+    "build_systems":
+    [
+		{
+			"name": "Ranga Build",
+		    "cmd": ["C:\\Anaconda3\\envs\\opencv\\python", "-u", "$file","--train_path", ".\\images\\train", "--test_path", ".\\images\\test"],
+		    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+		    "selector": "source.python"
+		}
+    ]	
+}
